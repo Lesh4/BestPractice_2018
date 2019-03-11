@@ -1,36 +1,43 @@
-def add():    
-    if oper[1] not in syn.keys():
-        syn[oper[1]] = set()
-    if oper[2] not in syn.keys():
-        syn[oper[2]] = set()
-    syn[oper[1]].add(oper[2])
-    syn[oper[2]].add(oper[1])
-    words.append(oper[1])
-    words.append(oper[2])
+""" This program performs some operations with synonums """
+def add():
+    """ Adds words to the dictionary """
+    if OPER[1] not in SYN.keys():
+        SYN[OPER[1]] = set()
+    if OPER[2] not in SYN.keys():
+        SYN[OPER[2]] = set()
+    SYN[OPER[1]].add(OPER[2])
+    SYN[OPER[2]].add(OPER[1])
+    if OPER[1] not in WORDS or OPER[2] not in WORDS:
+        WORDS.append(OPER[1])
+        WORDS.append(OPER[2])
+
 def count():
-    print(words.count(oper[1]))
-def check(word1,word2):
-    if word1 not in syn.keys() or word2 not in syn.keys():
-        print("NO") 
-    if word1 in syn[word2]:
-        print("YES") 
+    """ Counts the number of repetitions of a word in the list """
+    print(WORDS.count(OPER[1]))
+
+def check(word1, word2):
+    """ Check the words for synonums """
+    if word1 not in SYN.keys() or word2 not in SYN.keys():
+        print("NO")
+    elif word1 in SYN[word2]:
+        print("YES")
     else:
-        print("NO") 
-syn = {}
-words = []
-opers = []
-n = int(input())
+        print("NO")
+SYN = {}
+WORDS = []
+OPERS = []
+N = int(input())
 i = 0
-while i < n:
-    oper = input().lower().split()
-    opers.append(oper)
-    i+=1
-for oper in opers:     
-    if oper[0] == "add":
+while i < N:
+    OPER = input().lower().split()
+    OPERS.append(OPER)
+    i += 1
+for OPER in OPERS:
+    if OPER[0] == "add":
         add()
-    elif oper[0] == "count":
+    elif OPER[0] == "count":
         count()
-    elif oper[0] == "check":
-        check(oper[1],oper[2])
+    elif OPER[0] == "check":
+        check(OPER[1], OPER[2])
     else:
         print("Error")
