@@ -1,4 +1,4 @@
-""" This program performs some operations with synonums """
+""" This program performs some operations with synonums. """
 def add():
     """ Adds words to the dictionary """
     if OPER[1] not in SYN.keys():
